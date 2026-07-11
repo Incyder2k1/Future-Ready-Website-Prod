@@ -1,0 +1,20 @@
+2026-07-05T16:50:35.821853 Project directory: /docker/wordpress-bosf
+2026-07-05T16:50:35.822216 Pulling project images
+2026-07-05T16:50:35.822934 ------------------------------
+2026-07-05T16:50:35.969889  Image wordpress:latest Pulling 
+2026-07-05T16:50:35.970165  Image mysql:8 Pulling 
+2026-07-05T16:50:36.960433  Image mysql:8 Pulled 
+2026-07-05T16:50:36.984590  Image wordpress:latest Pulled 
+2026-07-05T16:50:37.069391 ------------------------------
+2026-07-05T16:50:37.069551 Deploying project
+2026-07-05T16:50:37.071174 ------------------------------
+2026-07-05T16:50:37.250598  Container wordpress-bosf-db-1 Recreate 
+2026-07-05T16:50:38.811063  Container wordpress-bosf-db-1 Recreated 
+2026-07-05T16:50:38.811555  Container wordpress-bosf-wordpress-1 Recreate 
+2026-07-05T16:50:40.139671  Container wordpress-bosf-wordpress-1 Recreated 
+2026-07-05T16:50:40.181760  Container wordpress-bosf-db-1 Starting 
+2026-07-05T16:50:40.356115  Container wordpress-bosf-db-1 Started 
+2026-07-05T16:50:40.356167  Container wordpress-bosf-wordpress-1 Starting 
+2026-07-05T16:50:40.653545  Container wordpress-bosf-wordpress-1 Started 
+2026-07-05T16:50:40.663243 ------------------------------
+2026-07-05T16:50:40.663313 Project deployed successfully

@@ -1,0 +1,55 @@
+services:
+  wordpress:
+    image: wordpress:latest
+    restart: unless-stopped
+    env_file:
+      - .env
+    environment:
+      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_USER: wordpress
+      WORDPRESS_DB_PASSWORD: ${MYSQL_PASSWORD}
+      WORDPRESS_DB_NAME: wordpress
+    expose:
+      - "80"
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.wordpress-bosf.rule=Host(`wpress.incyder.cloud`) || Host(`future-ready.net`) || Host(`www.future-ready.net`)
+      - traefik.http.routers.wordpress-bosf.entrypoints=websecure
+      - traefik.http.routers.wordpress-bosf.tls.certresolver=letsencrypt
+      - traefik.http.services.wordpress-bosf.loadbalancer.server.port=80
+      - traefik.docker.network=traefik-proxy
+    volumes:
+      - wordpress_data:/var/www/html
+    depends_on:
+      - db
+    networks:
+      - default
+      - traefik-proxy
+
+  db:
+    image: mysql:8
+    restart: unless-stopped
+    env_file:
+      - .env
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: wordpress
+      MYSQL_USER: wordpress
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    volumes:
+      - db_data:/var/lib/mysql
+    networks:
+      - default
+
+networks:
+  traefik-proxy:
+    external: true
+
+volumes:
+  wordpress_data:
+    external: true
+    name: wordpress-bosf_wordpress
+
+  db_data:
+    external: true
+    name: wordpress-bosf_db
